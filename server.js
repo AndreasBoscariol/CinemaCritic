@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { OpenAI } = require('openai');
+const { OpenAI } = require('openai');  // Ensure correct destructuring based on the used version of the OpenAI client library.
 
 require('dotenv').config();
 
-// Initialize OpenAI client
+// Initialize OpenAI client with the API Key
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
@@ -19,23 +19,24 @@ app.post("/chat", async (req, res) => {
     const { prompt } = req.body;
 
     try {
-        const completion = await openai.Completion.create({
-            model: 'gpt-3.5-turbo', // Ensure this model is available in your OpenAI plan
-            prompt: prompt, // Directly using the 'prompt' from the request
-            max_tokens: 150 // Specify the maximum number of tokens to generate
+        const completion = await openai.chat.completions.create({
+            model: 'gpt-4', // Make sure this is the correct model you're supposed to use
+            messages: [
+              { role: 'user', content: prompt }
+            ]
         });
 
-        // Check if the completion has choices and send the first one
         if (completion && completion.choices && completion.choices.length > 0) {
-            res.send(completion.choices[0].text);
+            res.send(completion.choices[0].message.content);
         } else {
-            res.status(500).send("Failed to generate completion.");
+            res.status(500).send("No completion found.");
         }
     } catch (error) {
         console.error('Failed to create completion:', error);
-        res.status(500).send("Error interacting with OpenAI API.");
+        res.status(500).send("Error interacting with OpenAI API: " + error.message);
     }
 });
+
 
 const PORT = 8000;
 app.listen(PORT, () => {
