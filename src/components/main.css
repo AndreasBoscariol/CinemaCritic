@@ -2,6 +2,7 @@ h1 {
     color: rgb(246, 255, 255);
     font-family: palatino, sans-serif;
     margin-top: 20%;
+    margin-bottom: 20%;
     font-size: 4em;
     z-index: 100;
 
@@ -10,7 +11,7 @@ h1 {
 h2 {
     color: rgb(246, 255, 255);
     font-family: Sistina Platino, sans-serif;
-    margin-top: 20%;
+    margin:100px;
     font-size: 1.5em;
     z-index: 100;
 }

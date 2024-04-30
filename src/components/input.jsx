@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
 import Main from './main';
 import './input.css';
 
@@ -48,7 +47,5 @@ function InputFunction() {
     );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<InputFunction />);
 
 export default InputFunction;

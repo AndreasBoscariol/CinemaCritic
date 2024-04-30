@@ -16,7 +16,7 @@ const Main = ({ username }) => {
                 if (result.length > 0) {
                 sendToChatGPT(result);
                 } else {
-                setResponse("No data found for the user.");
+                setResponse("Letterboxd User not found. Please try again.");
                 }
             } catch (error) {
                 console.error('Failed to fetch RSS data:', error);
@@ -30,7 +30,7 @@ const Main = ({ username }) => {
 
     const sendToChatGPT = async (rssData) => {
         try {
-            const response = await axios.post('http://localhost:8000/chat', { username, rssData });
+            const response = await axios.post('http://localhost:8000/chat', { prompt: rssData });
             setResponse(response.data);
         } catch (error) {
             console.error('Failed to send data to ChatGPT:', error);
@@ -40,7 +40,7 @@ const Main = ({ username }) => {
 
     return (
         <div>
-            <p>{response}</p>
+            <h2>{response}</h2>
         </div>
     );
 };

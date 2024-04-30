@@ -9,9 +9,9 @@ const App = () => (
     <Main />
     <InputFunction />
 
-    <div id="orange" class="stripe"></div>
-    <div id="green" class="stripe"></div>
-    <div id="blue" class="stripe"></div>
+    <div id="orange" className="stripe"></div>
+    <div id="green" className="stripe"></div>
+    <div id="blue" className="stripe"></div>
     <Footer />
   </div>
 );

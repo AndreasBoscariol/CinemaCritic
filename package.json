@@ -17,12 +17,12 @@
     "https-browserify": "^1.0.0",
     "node-fetch": "^3.3.2",
     "nodemon": "^3.1.0",
-    "openai": "^4.39.0",
+    "openai": "^4.39.1",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^3.0.1",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "timers-browserify": "^2.0.12",
@@ -32,8 +32,9 @@
     "zlib-browserify": "^0.0.3"
   },
   "scripts": {
-    "start:frontend": "react-scripts start",
+    "start:frontend": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "start:backend": "nodemon server.js",
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -55,5 +56,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
