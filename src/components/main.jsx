@@ -1,39 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import readRSS from '../letterboxd/letterboxd_rss';  
 import './main.css';
+import axios from 'axios';
 
 const Main = ({ username }) => {
     const [data, setData] = useState([]);
+    const [response, setResponse] = useState("");
 
     useEffect(() => {
-        if (username) {
+
         const fetchData = async () => {
             try {
                 const result = await readRSS(username);
                 setData(result);
+                if (result.length > 0) {
+                sendToChatGPT(result);
+                } else {
+                setResponse("No data found for the user.");
+                }
             } catch (error) {
                 console.error('Failed to fetch RSS data:', error);
-                setData([]); 
+                setResponse("Failed to fetch the data.");
             }
         };
+        if (username) {
         fetchData();
-    }
+        }
     }, [username]); 
+
+    const sendToChatGPT = async (rssData) => {
+        try {
+            const response = await axios.post('http://localhost:8000/chat', { username, rssData });
+            setResponse(response.data);
+        } catch (error) {
+            console.error('Failed to send data to ChatGPT:', error);
+            setResponse("Failed to process the data.");
+        }
+    };
 
     return (
         <div>
-            <h1 id="textbox">How Bad Is Your Movie Taste? {username}</h1>
-            <h2 id="textbox"> Our movie Artifical Intelligence will disect and roast your horrible taste in film.</h2>
-                <ul>
-                    {data.map((item, index) => (
-                        <li key={index}>
-                            <strong>Title:</strong> {item.title}
-                            <br/>
-                            <strong>Review:</strong> {item.review}
-                        </li>
-                    ))}
-                </ul>
-
+            <p>{response}</p>
         </div>
     );
 };

@@ -7,12 +7,14 @@ function InputFunction() {
     const [username, setUserName] = useState("");
     const [isVisible, setIsVisible] = useState(false);
     const [submit, setSubmit] = useState(false);
+    const [showWelcome, setShowWelcome] = useState(true);
    
     const handleSubmit = (event) => {
         event.preventDefault();
-        alert('A name was submitted: ' + username);
         if (username.trim()) {
             setSubmit(true);
+            setIsVisible(false);
+            setShowWelcome(true);
         }
     };
 
@@ -22,6 +24,12 @@ function InputFunction() {
 
     return (
         <div>
+             {showWelcome && (
+                <div>
+                    <h1 id="textbox">How Bad Is Your Movie Taste?</h1>
+                    <h2 id="textbox"> Our movie Artifical Intelligence will disect and roast your horrible taste in film.</h2>
+                </div>
+            )}
             <button onClick={toggleVisibility}>Get Started</button>
             {isVisible && (
                 <div className="animate-input">
