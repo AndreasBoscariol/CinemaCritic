@@ -1,0 +1,24 @@
+h1 {
+    color: rgb(246, 255, 255);
+    font-family: palatino, sans-serif;
+    margin-top: 20%;
+    font-size: 4em;
+    z-index: 100;
+
+}
+
+h2 {
+    color: rgb(246, 255, 255);
+    font-family: Sistina Platino, sans-serif;
+    margin-top: 20%;
+    font-size: 1.5em;
+    z-index: 100;
+}
+
+#textbox {
+    width: 550px; /* Set a specific width */
+    word-wrap: break-word; /* Breaks long words to prevent overflow */
+    margin: 0 auto; /* Center the element */
+    margin-top: 1.5em;
+    text-align: center; /* Center text */
+}

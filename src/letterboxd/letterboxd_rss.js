@@ -2,12 +2,7 @@
 async function readRSS(username) {
   const url = `https://letterboxd.com/${username}/rss/`;
   try {
-    const response = await fetch(URL, {
-      mode: 'cors',
-      headers: {
-        'Access-Control-Allow-Origin':'*'
-      }
-    })
+    const response = await fetch(url);
     const xmlText = await response.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlText, "application/xml");

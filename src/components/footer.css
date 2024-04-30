@@ -1,0 +1,17 @@
+footer {
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+    position: absolute;
+}
+
+.right {
+    margin-left: auto;
+    padding-right: 25px;
+}
+
+svg:hover {
+    fill: #FA7F00;
+}

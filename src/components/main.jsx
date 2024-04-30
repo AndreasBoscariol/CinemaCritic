@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import readRSS from '../letterboxd/letterboxd_rss';  
-
+import './main.css';
 
 const Main = ({ username }) => {
     const [data, setData] = useState([]);
@@ -22,8 +22,8 @@ const Main = ({ username }) => {
 
     return (
         <div>
-            <h1>Data for User: {username}</h1>
-            {data.length > 0 ? (
+            <h1 id="textbox">How Bad Is Your Movie Taste? {username}</h1>
+            <h2 id="textbox"> Our movie Artifical Intelligence will disect and roast your horrible taste in film.</h2>
                 <ul>
                     {data.map((item, index) => (
                         <li key={index}>
@@ -33,9 +33,7 @@ const Main = ({ username }) => {
                         </li>
                     ))}
                 </ul>
-            ) : (
-                <p>No data available or failed to fetch data.</p>
-            )}
+
         </div>
     );
 };
