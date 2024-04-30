@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import readRSS from '../letterboxd/letterboxd_rss';  
 
-const Main = () => {
+
+const Main = ({ username }) => {
     const [data, setData] = useState([]);
-    const username = "reelbad"; // Change username
 
     useEffect(() => {
+        if (username) {
         const fetchData = async () => {
             try {
                 const result = await readRSS(username);
@@ -15,8 +16,8 @@ const Main = () => {
                 setData([]); 
             }
         };
-
         fetchData();
+    }
     }, [username]); 
 
     return (
