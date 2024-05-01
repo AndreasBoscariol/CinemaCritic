@@ -25,6 +25,7 @@ button {
     border-radius: 6px;
     font-size: 16px;
     font-family: 'Sistina Platino', sans-serif;
+    box-shadow: 2px 2px 4px #000000;
 }
 
 button:hover {

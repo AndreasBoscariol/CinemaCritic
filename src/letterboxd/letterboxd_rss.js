@@ -12,7 +12,9 @@ async function readRSS(username) {
       const title = item.querySelector("title") ? item.querySelector("title").textContent : "No title";
       const rating = item.querySelector("letterboxd\\:memberRating") ? item.querySelector("letterboxd\\:memberRating").textContent : "No rating";
       const review = item.querySelector("description") ? item.querySelector("description").textContent : "No review";
-      return { title, rating, review };
+      const htmlContent = parser.parseFromString(review, "text/html");
+      const imgSrc = htmlContent.querySelector("img") ? htmlContent.querySelector("img").src : "No image";
+      return { title, rating, review, imgSrc };
     });
   } catch (error) {
     console.error('Failed to fetch RSS data:', error);

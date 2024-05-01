@@ -14,7 +14,7 @@ const Main = ({ username }) => {
         setIsLoading(true);
         try {
             const promises = rssData.map(item => axios.post('http://localhost:8000/chat', {
-                prompt: `${item.title} ${item.rating} ${item.review} You are a harsh movie critic. Write a sarcastic and mean quip making fun of the user about what they wrote. Make sure to provide the name of the moving you are making fun of to ensure proper context. Keep responses only up to 4 sentences.`
+                prompt: `${item.title} ${item.rating} ${item.review} You are a harsh movie critic. Write a sarcastic and mean quip making fun of the user about what they wrote. Make sure to provide the name of the movie you are making fun of to ensure proper context. Keep responses only up to 4 sentences.`
             }).then(response => `${response.data}\n`)
             .catch(error => {
                 console.error('Failed to send data to ChatGPT:', error);
@@ -45,11 +45,11 @@ const Main = ({ username }) => {
                     setCurrentDisplay(prev => prev + response + '\n');
                 });
             } else {
-                setCurrentDisplay("Letterboxd User not found. Please try again.");
+                setCurrentDisplay("");
             }
         } catch (error) {
             console.error('Failed to fetch RSS data:', error);
-            setCurrentDisplay("Failed to fetch the data.");
+            setCurrentDisplay("");
         }
         setIsLoading(false);
     }, [username, sendToChatGPT]);
@@ -63,9 +63,11 @@ const Main = ({ username }) => {
     }, [fetchData]);
 
     return (
-        <div className="typerwriter-container">
-            <h2>
-                {isLoading ? "Analyzing your Movie Taste..." : (
+        <div className="typewriter-container">
+            {isLoading ? (
+                <h2>Analyzing your Movie Taste...</h2>
+            ) : (
+                currentDisplay.trim() && (
                     <Typewriter
                         onInit={(typewriter) => {
                             typewriter.typeString(currentDisplay).start();
@@ -76,8 +78,8 @@ const Main = ({ username }) => {
                             loop: false,
                         }}
                     />
-                )}
-            </h2>
+                )
+            )}
         </div>
     );
 };

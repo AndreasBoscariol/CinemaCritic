@@ -1,0 +1,17 @@
+.image-container {
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+}
+
+img {
+    width: 20%;
+    min-height: 10%;
+    height: auto;
+    max-height: 220px;  
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px;
+}
