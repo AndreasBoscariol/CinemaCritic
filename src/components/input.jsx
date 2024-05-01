@@ -27,7 +27,7 @@ function InputFunction() {
                 </div>
             {!submit && (
                 <>
-            <button onClick={toggleVisibility}>{isVisible ? "Hide Form" : "Get Started"}</button>
+            <button onClick={toggleVisibility}>{ "Get Started"}</button>
             {isVisible && (
                 <div className="animate-input">
                     <form onSubmit={handleSubmit}>
