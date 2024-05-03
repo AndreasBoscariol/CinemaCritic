@@ -5,7 +5,6 @@ import axios from 'axios';
 import Typewriter from 'typewriter-effect';
 
 const Main = ({ username }) => {
-    const [data, setData] = useState([]);
     const [fullResponse, setFullResponse] = useState("");  
     const [currentDisplay, setCurrentDisplay] = useState(""); 
     const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +37,6 @@ const Main = ({ username }) => {
         setIsLoading(true);
         try {
             const result = await readRSS(username);
-            setData(result);
             if (result.length > 0) {
                 const responses = await sendToChatGPT(result);
                 responses.forEach(response => {

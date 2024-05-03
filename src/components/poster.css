@@ -1,14 +1,18 @@
 .image-container {
     position: absolute;
-    left: 50%;
-    top: 80%;
-    transform: translate(-50%, -50%);
+    left: 0;           
+    right: 0;              
+    bottom: 0;             
     padding: 10px 20px;
+    overflow: hidden;      
+    display: flex;     
+    justify-content: center; 
 }
 
 img {
     width: 20%;
     min-height: 10%;
+    max-width: 160px;
     height: auto;
     max-height: 220px;  
     margin: 10px;
