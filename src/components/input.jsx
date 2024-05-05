@@ -10,7 +10,6 @@ const API_URL = 'http://localhost:8000/chat';
 const InputFunction = ({ onResponsesUpdate }) => {
     const [username, setUserName] = useState("");
     const [responses, setResponses] = useState([]);
-    const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [inputVisible, setInputVisible] = useState(true);
     const [textFieldVisible, setTextFieldVisible] = useState(false);
@@ -56,18 +55,13 @@ const InputFunction = ({ onResponsesUpdate }) => {
                 setErrorMessage("");
                 handleFadeOut();
                 setTimeout(() => setIsLoading(true), 500);
-                setData(result.map(item => ({ imgSrc: item.imgSrc, title: item.title })));
                 await sendToChatGPT(result);
             } else {
                 setErrorMessage("Username not found.");
-                setInputVisible(true);
-                setTextFieldVisible(true);
             }
         } catch (error) {
             console.error('Failed to fetch RSS data:', error);
             setErrorMessage("Failed to fetch data. Please check your connection and try again.");
-            setInputVisible(true);
-            setTextFieldVisible(true);
         } finally {
             setIsLoading(false);
         }
@@ -109,8 +103,8 @@ const InputFunction = ({ onResponsesUpdate }) => {
                 </div>
             )}
             {isLoading && <Loading />}
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-            {!inputVisible && <Main responses={responses} data={data} />}
+            {errorMessage && <h2 className="error-message">{errorMessage}</h2>}
+            {!inputVisible && <Main responses={responses} />}
         </div>
     );
 };
