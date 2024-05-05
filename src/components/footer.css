@@ -5,6 +5,7 @@ footer {
     justify-content: center;
     margin-bottom: 1em;
     position: absolute;
+    z-index: 101;
 }
 
 .right {

@@ -17,10 +17,23 @@ h2 {
 }
 
 #textbox {
-    width: 550px; /* Set a specific width */
-    word-wrap: break-word; /* Breaks long words to prevent overflow */
-    margin: 0 auto; /* Center the element */
+    width: 550px; 
+    word-wrap: break-word; 
+    margin: 0 auto; 
     margin-top: 1.5em;
-    text-align: center; /* Center text */
+    text-align: center; 
+}
+
+.typewriter-container {
+    width: 50%; 
+    word-wrap: break-word; 
+    margin: 0 auto; 
+    margin-top: 1.5em;
+    text-align: left; 
+    color: rgb(246, 255, 255);
+    font-family: Sistina Platino, sans-serif;
+    font-size: 1em;
+    z-index: 100;
+
 }
 
