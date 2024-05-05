@@ -13,6 +13,27 @@
     }
 }
 
+.fadeOut {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+
+.animate-input.fade-out {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+
 button {
     margin-top: 60px;
     background-color: #14b444;
