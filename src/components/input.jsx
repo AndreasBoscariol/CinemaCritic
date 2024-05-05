@@ -26,13 +26,19 @@ const InputFunction = ({ onResponsesUpdate }) => {
                     return {
                         imgSrc: item.imgSrc,
                         title: item.title,
+                        review: item.review,
+                        rating: item.rating,
+                        watchedDate: item.watchedDate,
                         description: response.data
                     };
                 } catch (error) {
                     console.error('Failed to send data to ChatGPT:', error);
                     return {
                         imgSrc: item.imgSrc,
-                        title: 'Error',
+                        title: item.title,
+                        review: item.review,
+                        rating: item.rating,
+                        watchedDate: item.watchedDate,
                         description: 'Failed to process the data for this entry.'
                     };
                 }

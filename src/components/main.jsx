@@ -4,30 +4,38 @@ import './main.css';
 
 const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex }) => {
     useEffect(() => {
-        if (responses.length > 0 && currentResponseIndex < responses.length) {
-            // Calculate delay based on the length of the current response
-            const delay = responses[currentResponseIndex].description.length * 50 + 1000;
-            const timer = setTimeout(() => {
-                // Advance to the next response or loop back to the start
-                const nextIndex = (currentResponseIndex + 1) % responses.length;
-                setCurrentResponseIndex(nextIndex);
-            }, delay);
+        console.log("Current Index: ", currentResponseIndex);
+        console.log("Responses: ", responses);
 
-            // Cleanup the timer on component unmount
-            return () => clearTimeout(timer);
+        if (responses && responses.length > 0 && responses[currentResponseIndex]) {
+            const currentResponse = responses[currentResponseIndex];
+            console.log("Current Response: ", currentResponse);
+            if (currentResponse && currentResponse.description && currentResponse.review !== "No review") {
+                const delay = currentResponse.description.length * 50 + 1000;
+                const timer = setTimeout(() => {
+                    let nextIndex = (currentResponseIndex + 1) % responses.length;
+                    while (responses[nextIndex].review === "No review" && nextIndex !== currentResponseIndex) {
+                        nextIndex = (nextIndex + 1) % responses.length;
+                    }
+                    setCurrentResponseIndex(nextIndex);
+                }, delay);
+
+                return () => clearTimeout(timer);
+            }
         }
     }, [currentResponseIndex, responses, setCurrentResponseIndex]);
 
+    const currentResponse = responses && responses[currentResponseIndex];
+
     return (
         <div className="typewriter-container">
-            {responses.length > 0 && currentResponseIndex < responses.length && (
+            {currentResponse && currentResponse.review !== "No review" && (
                 <Typewriter
                     onInit={(typewriter) => {
-                        typewriter.typeString(responses[currentResponseIndex].description)
+                        typewriter.typeString(`${currentResponse.title}: ${currentResponse.description}`)
                             .callFunction(() => {
-                                // Optionally reset to start after last response
                                 if (currentResponseIndex === responses.length - 1) {
-                                    setCurrentResponseIndex(0); 
+                                    setCurrentResponseIndex(0);
                                 }
                             })
                             .start();
@@ -42,5 +50,6 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex }) => {
         </div>
     );
 };
+
 
 export default Main;
