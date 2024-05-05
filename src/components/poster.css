@@ -1,4 +1,17 @@
-.image-container {
+img {
+    width: 20%;
+    min-height: 10%;
+    max-width: 130px;
+    height: auto;
+    max-height: 200px;  
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px;
+    flex: 0 0 auto; /* Ensures that images do not stretch */
+
+}
+
+.original-poster {
     position: absolute;
     left: 0;           
     right: 0;              
@@ -9,13 +22,27 @@
     justify-content: center; 
 }
 
-img {
-    width: 20%;
-    min-height: 10%;
-    max-width: 130px;
-    height: auto;
-    max-height: 200px;  
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 4px 4px;
+.image-container {
+    position: absolute;
+    bottom: 0;             
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
+    overflow: hidden;      
+    display: flex;     
+    white-space: nowrap;   
+    justify-content: flex-start; 
 }
+
+.image-container img.highlight {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+
+
