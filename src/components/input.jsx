@@ -8,12 +8,13 @@ import './input.css';
 function InputFunction({ onResponsesUpdate }) {
     const [username, setUserName] = useState("");
     const [responses, setResponses] = useState([]);
-    const [imageData, setImageData] = useState([]); // Separate state for image data
+    const [imageData, setImageData] = useState([]); 
     const [isLoading, setIsLoading] = useState(false);
     const [inputVisible, setInputVisible] = useState(true);
     const [textFieldVisible, setTextFieldVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
+    // Sends RSS data to ChatGPT and updates response state
     const sendToChatGPT = useCallback(async (rssData) => {
         try {
             const promises = rssData.map(item =>
@@ -38,42 +39,38 @@ function InputFunction({ onResponsesUpdate }) {
         }
     }, [onResponsesUpdate]);
 
+    // Fetches data and manages UI states based on the data availability
     const fetchData = useCallback(async () => {
         if (!username) return;
         
         try {
+            setIsLoading(true);
+            setInputVisible(false);
+            setTextFieldVisible(false);
+
             const result = await readRSS(username);
             if (result.length > 0) {
                 setErrorMessage("");
-                setIsLoading(true);
-                setInputVisible(false);
-                setTextFieldVisible(false);
-
-                // Set the imageData state right after fetching
                 setImageData(result.map(item => ({ imgSrc: item.imgSrc, title: item.title })));
-
                 await sendToChatGPT(result);
             } else {
                 setErrorMessage("Username not found.");
-                setTextFieldVisible(true); // Keep the text field visible for corrections
-                setInputVisible(true); // Show initial elements again if username not found
+                setInputVisible(true);
+                setTextFieldVisible(true);
             }
         } catch (error) {
             console.error('Failed to fetch RSS data:', error);
             setErrorMessage("Failed to fetch data. Please check your connection and try again.");
-            setTextFieldVisible(true); // Keep the text field visible for corrections
-            setInputVisible(true); // Show initial elements again if error occurs
+            setInputVisible(true);
+            setTextFieldVisible(true);
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
     }, [username, sendToChatGPT]);
 
-    const handleInitialClick = () => {
-        setTextFieldVisible(true);
-    };
+    const handleInitialClick = () => setTextFieldVisible(true);
 
-    const handleButtonClick = () => {
-        fetchData();
-    };
+    const handleButtonClick = () => fetchData();
     
     return (
         <div>

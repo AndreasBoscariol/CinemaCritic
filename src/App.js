@@ -7,18 +7,17 @@ import './App.css';
 
 const App = () => {
     const [responses, setResponses] = useState([]);
-    const [currentResponseIndex, setCurrentResponseIndex] = useState(0); // Added state for tracking current poster
+    const [currentResponseIndex, setCurrentResponseIndex] = useState(0);
 
     return (
         <div className="App">
-            <Main responses={responses} currentResponseIndex={currentResponseIndex} />
+            <Main responses={responses} currentResponseIndex={currentResponseIndex} setCurrentResponseIndex={setCurrentResponseIndex} />
             <InputFunction onResponsesUpdate={setResponses} />
             <div id="orange" className="stripe"></div>
             <div id="green" className="stripe"></div>
             <div id="blue" className="stripe"></div>
             <Poster response={responses} currentIndex={currentResponseIndex} />
             <Footer />
-            <button onClick={() => setCurrentResponseIndex((currentResponseIndex + 1) % responses.length)}>Next Poster</button>
         </div>
     );
 };
