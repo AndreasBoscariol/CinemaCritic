@@ -19,31 +19,28 @@ const InputFunction = ({ onResponsesUpdate }) => {
     const sendToChatGPT = useCallback(async (rssData) => {
         try {
             const promises = rssData.map(async (item) => {
+                let description = "";
                 try {
-                    const response = await axios.post(API_URL, {
-                        prompt: `${item.title} ${item.rating} ${item.review} You are a harsh movie critic. Write a sarcastic and mean quip making fun of the user about what they wrote. Make sure to provide the name of the movie you are making fun of to ensure proper context. Keep responses only up to 4 sentences.`
-                    });
-                    return {
-                        imgSrc: item.imgSrc,
-                        title: item.title,
-                        review: item.review,
-                        rating: item.rating,
-                        watchedDate: item.watchedDate,
-                        description: response.data
-                    };
+                    if (item.review !== "No review") {
+                        const response = await axios.post(API_URL, {
+                            prompt: `${item.title} ${item.rating} ${item.review} You are a harsh movie critic. Write a sarcastic and mean quip making fun of the user about what they wrote. Make sure to provide the name of the movie you are making fun of to ensure proper context. Keep responses only up to 4 sentences.`
+                        });
+                        description = response.data;
+                    }
                 } catch (error) {
                     console.error('Failed to send data to ChatGPT:', error);
-                    return {
-                        imgSrc: item.imgSrc,
-                        title: item.title,
-                        review: item.review,
-                        rating: item.rating,
-                        watchedDate: item.watchedDate,
-                        description: 'Failed to process the data for this entry.'
-                    };
+                    description = 'Failed to process the data for this entry.';
                 }
+                return {
+                    imgSrc: item.imgSrc,
+                    title: item.title,
+                    review: item.review,
+                    rating: item.rating,
+                    watchedDate: item.watchedDate, 
+                    description: description,
+                };
             });
-
+    
             const updatedResponses = await Promise.all(promises);
             setResponses(updatedResponses);
             onResponsesUpdate(updatedResponses);
@@ -51,6 +48,7 @@ const InputFunction = ({ onResponsesUpdate }) => {
             console.error('General error in sending data to ChatGPT:', error);
         }
     }, [onResponsesUpdate]);
+    
 
     const fetchData = useCallback(async () => {
         if (!username) return;
