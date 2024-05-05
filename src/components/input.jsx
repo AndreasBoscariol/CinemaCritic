@@ -1,13 +1,14 @@
 import React, { useState, useCallback } from 'react';
-import readRSS from '../letterboxd/letterboxd_rss';
-import Main from './main';
-import Loading from './loading'; // Import the new Loading component
-import './input.css';
 import axios from 'axios';
+import readRSS from '../letterboxd/letterboxd_rss';
+import Loading from './loading';
+import Main from './main';
+import './input.css';
 
-const InputFunction = ({ onResponsesUpdate }) => {
+function InputFunction({ onResponsesUpdate }) {
     const [username, setUserName] = useState("");
-    const [responses, setResponses] = useState("");
+    const [responses, setResponses] = useState([]);
+    const [imageData, setImageData] = useState([]); // Separate state for image data
     const [isLoading, setIsLoading] = useState(false);
     const [inputVisible, setInputVisible] = useState(true);
     const [textFieldVisible, setTextFieldVisible] = useState(false);
@@ -18,16 +19,20 @@ const InputFunction = ({ onResponsesUpdate }) => {
             const promises = rssData.map(item =>
                 axios.post('http://localhost:8000/chat', {
                     prompt: `${item.title} ${item.rating} ${item.review} You are a harsh movie critic. Write a sarcastic and mean quip making fun of the user about what they wrote. Make sure to provide the name of the movie you are making fun of to ensure proper context. Keep responses only up to 4 sentences.`
-                }).then(response => `${response.data}\n`)
+                }).then(response => ({
+                    imgSrc: item.imgSrc,
+                    title: item.title,
+                    description: response.data
+                }))
                 .catch(error => {
                     console.error('Failed to send data to ChatGPT:', error);
-                    return `Failed to process the data for entry.\n`;
+                    return { imgSrc: item.imgSrc, title: 'Error', description: 'Failed to process the data for this entry.' };
                 })
             );
 
             const responses = await Promise.all(promises);
-            setResponses(responses.join(''));
-            onResponsesUpdate(responses.join(''));
+            setResponses(responses);
+            onResponsesUpdate(responses);
         } catch (error) {
             console.error('General error in sending data to ChatGPT:', error);
         }
@@ -43,6 +48,10 @@ const InputFunction = ({ onResponsesUpdate }) => {
                 setIsLoading(true);
                 setInputVisible(false);
                 setTextFieldVisible(false);
+
+                // Set the imageData state right after fetching
+                setImageData(result.map(item => ({ imgSrc: item.imgSrc, title: item.title })));
+
                 await sendToChatGPT(result);
             } else {
                 setErrorMessage("Username not found.");
@@ -65,7 +74,7 @@ const InputFunction = ({ onResponsesUpdate }) => {
     const handleButtonClick = () => {
         fetchData();
     };
-
+    
     return (
         <div>
             {inputVisible && (
@@ -92,7 +101,7 @@ const InputFunction = ({ onResponsesUpdate }) => {
             )}
             {isLoading && <Loading />}
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-            {!inputVisible && <Main responses={responses} />}
+            {!inputVisible && <Main responses={responses} imageData={imageData} />}
         </div>
     );
 }

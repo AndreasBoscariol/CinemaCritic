@@ -26,6 +26,7 @@ button {
     font-size: 16px;
     font-family: 'Sistina Platino', sans-serif;
     box-shadow: 2px 2px 4px #000000;
+    transition: background-color 0.3s;
 }
 
 button:hover {
@@ -35,14 +36,23 @@ button:hover {
 
 input[type=text] {
     width: 25%;
+    max-width: 300px; /* Ensuring input doesn't get too wide on larger screens */
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
+    border: 1px solid #ccc; /* Added border for better visibility */
+    border-radius: 4px; /* Rounded corners for the text field */
+    color: #333; /* Ensuring text color is visible */
+    transition: border-color 0.3s; /* Smooth transition for focus */
+}
+
+input[type=text]:focus {
+    border-color: #14b444; /* Highlighting focus with the same color as button */
 }
 
 p {
     color: rgb(246, 255, 255);
-    font-family: Sistina Platino, sans-serif;
+    font-family: 'Sistina Platino', sans-serif;
     font-size: 1.5em;
     z-index: 100;
 }
