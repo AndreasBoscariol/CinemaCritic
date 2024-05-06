@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cinemacritic/static/css/main.bcfa8546.chunk.css",
+    "main.js": "/cinemacritic/static/js/main.4f273830.chunk.js",
+    "main.js.map": "/cinemacritic/static/js/main.4f273830.chunk.js.map",
+    "runtime~main.js": "/cinemacritic/static/js/runtime~main.87fa3cd3.js",
+    "runtime~main.js.map": "/cinemacritic/static/js/runtime~main.87fa3cd3.js.map",
+    "static/js/2.eee5a94b.chunk.js": "/cinemacritic/static/js/2.eee5a94b.chunk.js",
+    "static/js/2.eee5a94b.chunk.js.map": "/cinemacritic/static/js/2.eee5a94b.chunk.js.map",
+    "index.html": "/cinemacritic/index.html",
+    "precache-manifest.e98a0d981ba6ea93baf9613c13629f00.js": "/cinemacritic/precache-manifest.e98a0d981ba6ea93baf9613c13629f00.js",
+    "service-worker.js": "/cinemacritic/service-worker.js",
+    "static/css/main.bcfa8546.chunk.css.map": "/cinemacritic/static/css/main.bcfa8546.chunk.css.map"
+  }
+}
