@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/CinemaCritic/static/css/main.bcfa8546.chunk.css",
-    "main.js": "/CinemaCritic/static/js/main.4f273830.chunk.js",
-    "main.js.map": "/CinemaCritic/static/js/main.4f273830.chunk.js.map",
-    "runtime~main.js": "/CinemaCritic/static/js/runtime~main.69156e13.js",
-    "runtime~main.js.map": "/CinemaCritic/static/js/runtime~main.69156e13.js.map",
-    "static/js/2.eee5a94b.chunk.js": "/CinemaCritic/static/js/2.eee5a94b.chunk.js",
-    "static/js/2.eee5a94b.chunk.js.map": "/CinemaCritic/static/js/2.eee5a94b.chunk.js.map",
-    "index.html": "/CinemaCritic/index.html",
-    "precache-manifest.6ab18e4941f769ff523f4caf4fdce82c.js": "/CinemaCritic/precache-manifest.6ab18e4941f769ff523f4caf4fdce82c.js",
-    "service-worker.js": "/CinemaCritic/service-worker.js",
-    "static/css/main.bcfa8546.chunk.css.map": "/CinemaCritic/static/css/main.bcfa8546.chunk.css.map"
+    "main.css": "/static/css/main.bcfa8546.chunk.css",
+    "main.js": "/static/js/main.4f273830.chunk.js",
+    "main.js.map": "/static/js/main.4f273830.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.eee5a94b.chunk.js": "/static/js/2.eee5a94b.chunk.js",
+    "static/js/2.eee5a94b.chunk.js.map": "/static/js/2.eee5a94b.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.b680b602cb30ae1ea8200f520677342e.js": "/precache-manifest.b680b602cb30ae1ea8200f520677342e.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.bcfa8546.chunk.css.map": "/static/css/main.bcfa8546.chunk.css.map"
   }
 }
