@@ -43,4 +43,18 @@ img {
     to { transform: scale(1.1); }
 }
 
+.image-container.full-screen {
+    position: fixed;  /* Changed from absolute to fixed */
+    top: 0;           /* Added to expand to the full screen */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;       /* Optional: Adjust padding if needed */
+    background-color: rgba(0, 0, 0, 0.8); /* Optional: Add a background color for better visibility */
+    justify-content: center; /* Center the images horizontally */
+    align-items: center;     /* Center the images vertically */
+    transition: all 0.5s ease-in-out; /* Smooth transition for the expansion */
+}
+
+
 

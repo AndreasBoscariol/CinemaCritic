@@ -35,3 +35,9 @@ h2 {
     z-index: 100;
 }
 
+#conversation {
+    float: right;
+    margin-right: 10px; /* Adjusts the margin for the button */
+  
+}
+

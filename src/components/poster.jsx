@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import './poster.css';
 
-const Poster = ({ response = [], currentIndex }) => {
-    // Initialize refs for each image element for scrolling purposes
+const Poster = ({ response = [], currentIndex, fullScreen, setFullScreen }) => {
     const refs = useRef([]);
     refs.current = response.map((_, i) => refs.current[i] ?? React.createRef());
 
     useEffect(() => {
-        // Scroll the current image into the center of the viewport smoothly
         if (refs.current[currentIndex] && refs.current[currentIndex].current) {
             refs.current[currentIndex].current.scrollIntoView({
                 behavior: 'smooth',
@@ -27,8 +25,7 @@ const Poster = ({ response = [], currentIndex }) => {
     );
 
     return (
-        <div className='image-container'>
-            {/* Map response to images and apply highlight class to the current index */}
+        <div className={`image-container ${fullScreen ? 'full-screen' : ''}`}>
             {response.map((item, index) => (
                 <img
                     key={index}
