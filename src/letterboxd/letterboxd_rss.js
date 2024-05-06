@@ -6,8 +6,11 @@ async function readRSS(username) {
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlText, "application/xml");
     const items = xmlDoc.querySelectorAll("item");
-    
-    return Array.from(items).map(item => {
+
+    return Array.from(items).filter(item => {
+      const link = item.querySelector("link") ? item.querySelector("link").textContent : "";
+      return !link.includes("/list/");
+    }).map(item => {
       const fullTitle = item.querySelector("title") ? item.querySelector("title").textContent : "No title";
       const title = fullTitle.split(',')[0]; 
       const rating = item.querySelector("*|memberRating") ? item.querySelector("*|memberRating").textContent : "No rating";
