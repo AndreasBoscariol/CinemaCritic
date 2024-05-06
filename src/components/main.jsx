@@ -1,33 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Typewriter from 'typewriter-effect';
 import './main.css';
 
 const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFullScreen }) => {
     const [showButton, setShowButton] = useState(false);
-    const [typewriterKey, setTypewriterKey] = useState(0); // Add a key to force re-render Typewriter
-    const [continueTyping, setContinueTyping] = useState(true); // Control the continuation of typing
+    const [typewriterKey, setTypewriterKey] = useState(0);
+    const [continueTyping, setContinueTyping] = useState(true);
+    const [endText, setEndText] = useState('');
+
+    const calculateStats = useCallback(() => {
+        const lastMonth = new Date();
+        lastMonth.setMonth(lastMonth.getMonth() - 1);
+        let sumRatings = 0;
+        let countRatings = 0;
+        let countReviews = 0;
+
+        responses.forEach(response => {
+            const watchedDate = new Date(response.watchedDate);
+            if (watchedDate > lastMonth) {
+                if (response.rating !== "No rating") {
+                    sumRatings += parseFloat(response.rating);
+                    countRatings++;
+                }
+                if (response.review !== "No review") {
+                    countReviews++;
+                }
+            }
+        });
+
+        const averageRating = countRatings > 0 ? (sumRatings / countRatings).toFixed(1) : "No ratings";
+        const statsText = `In the last month, you watched ${countReviews} movies, posted ${countReviews} reviews, and the average rating was ${averageRating}.`;
+        setEndText('Overall, your taste is pretty... meh. Here are some stats: \n'+statsText);
+    }, [responses]);
+
+    const endScreen = useCallback(() => {
+        setContinueTyping(false);
+        setFullScreen(true);
+        calculateStats();
+    }, [setFullScreen, calculateStats]);
 
     useEffect(() => {
-        console.log("Current Index: ", currentResponseIndex);
-        console.log("Responses: ", responses);
-
         if (responses && responses.length > 0 && responses[currentResponseIndex]) {
             const currentResponse = responses[currentResponseIndex];
-            console.log("Current Response: ", currentResponse);
-            console.log("Current Response Review: ", currentResponse.review);
             if (currentResponse && currentResponse.description && currentResponse.review !== "No review") {
                 const delay = currentResponse.description.length * 50 + 1000;
                 setTimeout(() => {
                     if (currentResponseIndex < responses.length - 1) {
-                        setShowButton(true); // Show the button after the response is displayed
+                        setShowButton(true);
                     } else {
-                        setContinueTyping(false); // Stop the Typewriter effect
-                        setFullScreen(true); // Trigger fullscreen
+                        endScreen();
                     }
                 }, delay);
             }
         }
-    }, [currentResponseIndex, responses, setFullScreen]);
+    }, [currentResponseIndex, responses, endScreen, setFullScreen]);
 
     const handleNextResponse = () => {
         let nextIndex = (currentResponseIndex + 1) % responses.length;
@@ -35,35 +61,50 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
             nextIndex = (nextIndex + 1) % responses.length;
         }
         setCurrentResponseIndex(nextIndex);
-        setShowButton(false); // Hide the button after it's clicked
-        setTypewriterKey(prevKey => prevKey + 1); // Increment key to force re-render Typewriter
+        setShowButton(false);
+        setTypewriterKey(prevKey => prevKey + 1);
     };
 
     const currentResponse = responses && responses[currentResponseIndex];
 
     return (
-        <div className="typewriter-container">
-            {currentResponse && currentResponse.review !== "No review" && continueTyping && (
-                <Typewriter
-                    key={typewriterKey} // Use key to force re-render on index change
-                    onInit={(typewriter) => {
-                        typewriter.typeString(currentResponse.description)
-                            .start();
-                    }}
-                    options={{
-                        delay: 50,
-                        autoStart: true,
-                        loop: false,
-                    }}
-                />
-            )}
-            {!continueTyping && currentResponse && (
-                <div className="typewriter-final">
-                    {currentResponse.description}
+        <div>
+            <div className="typewriter-container">
+                {currentResponse && currentResponse.review !== "No review" && continueTyping && (
+                    <Typewriter
+                        key={typewriterKey}
+                        onInit={(typewriter) => {
+                            typewriter.typeString(currentResponse.description)
+                                .start();
+                        }}
+                        options={{
+                            delay: 40,
+                            autoStart: true,
+                            loop: false,
+                        }}
+                    />
+                )}
+
+                {showButton && (
+                    <button id="conversation" onClick={handleNextResponse} className="next-button">Next Response</button>
+                )}
+            </div>
+
+            {!continueTyping && (
+                <div className='endText'>
+                    <Typewriter
+                        key={typewriterKey}
+                        onInit={(typewriter) => {
+                            typewriter.typeString(endText)
+                                .start();
+                        }}
+                        options={{
+                            delay: 40,
+                            autoStart: true,
+                            loop: false,
+                        }}
+                    />
                 </div>
-            )}
-            {showButton && (
-                <button id="conversation" onClick={handleNextResponse} className="next-button">Next Response</button>
             )}
         </div>
     );
