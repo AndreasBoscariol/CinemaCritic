@@ -6,12 +6,10 @@ const { OpenAI } = require('openai');  // Ensure correct destructuring based on 
 require('dotenv').config();
 
 // Initialize OpenAI client with the API Key
-const secrets = process.env.secrets ? JSON.parse(process.env.secrets) : {};
-const apiKey = secrets.OPENAI_API_KEY || "any-default-local-build-env";
-
 const openai = new OpenAI({
-    apiKey: apiKey,
+    apiKey: process.env.OPENAI_API_KEY || "any-default-local-build_env",
 });
+
 
 const app = express();
 
