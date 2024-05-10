@@ -1,70 +1,43 @@
 {
   "providers": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-cinemacritic-dev-98358-authRole",
-      "UnauthRoleArn": "arn:aws:iam::767397740855:role/amplify-cinemacritic-dev-98358-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::767397740855:role/amplify-cinemacritic-dev-98358-authRole",
+      "AuthRoleName": "amplify-cinemacritic-dev-77057-authRole",
+      "UnauthRoleArn": "arn:aws:iam::767397740855:role/amplify-cinemacritic-dev-77057-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::767397740855:role/amplify-cinemacritic-dev-77057-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-cinemacritic-dev-98358-deployment",
-      "UnauthRoleName": "amplify-cinemacritic-dev-98358-unauthRole",
-      "StackName": "amplify-cinemacritic-dev-98358",
-      "StackId": "arn:aws:cloudformation:us-east-2:767397740855:stack/amplify-cinemacritic-dev-98358/fe1f6730-0e78-11ef-922d-0a39b6c66cd3",
-      "AmplifyAppId": "d1jyt8ayukgxd8"
+      "DeploymentBucketName": "amplify-cinemacritic-dev-77057-deployment",
+      "UnauthRoleName": "amplify-cinemacritic-dev-77057-unauthRole",
+      "StackName": "amplify-cinemacritic-dev-77057",
+      "StackId": "arn:aws:cloudformation:us-east-2:767397740855:stack/amplify-cinemacritic-dev-77057/91a85ba0-0e7f-11ef-ac5c-02e141b6d597",
+      "AmplifyAppId": "dwipr0x9hbj5"
     }
   },
   "function": {
-    "opeanai": {
+    "cinemacritic4168fac2": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
-      "lastBuildTimeStamp": "2024-05-10T03:03:25.196Z",
+      "lastBuildTimeStamp": "2024-05-10T03:55:31.449Z",
       "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2024-05-10T03:03:26.089Z",
-      "distZipFilename": "opeanai-794c49682b752f642b45-build.zip",
+      "lastPackageTimeStamp": "2024-05-10T03:55:32.533Z",
+      "distZipFilename": "cinemacritic4168fac2-786b34412b6956516f67-build.zip",
       "s3Bucket": {
-        "deploymentBucketName": "amplify-cinemacritic-dev-98358-deployment",
-        "s3Key": "amplify-builds/opeanai-794c49682b752f642b45-build.zip"
+        "deploymentBucketName": "amplify-cinemacritic-dev-77057-deployment",
+        "s3Key": "amplify-builds/cinemacritic4168fac2-786b34412b6956516f67-build.zip"
       },
       "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-cinemacritic-dev-98358-deployment/amplify-cfn-templates/function/opeanai-cloudformation-template.json",
-        "logicalId": "functionopeanai"
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-cinemacritic-dev-77057-deployment/amplify-cfn-templates/function/cinemacritic4168fac2-cloudformation-template.json",
+        "logicalId": "functioncinemacritic4168fac2"
       },
-      "lastPushTimeStamp": "2024-05-10T03:04:59.103Z",
+      "lastPushTimeStamp": "2024-05-10T03:57:05.605Z",
       "output": {
-        "LambdaExecutionRoleArn": "arn:aws:iam::767397740855:role/cinemacriticLambdaRole16c0dbf0-dev",
+        "LambdaExecutionRoleArn": "arn:aws:iam::767397740855:role/cinemacriticLambdaRolefa3c6312-dev",
         "Region": "us-east-2",
-        "Arn": "arn:aws:lambda:us-east-2:767397740855:function:opeanai-dev",
-        "Name": "opeanai-dev",
-        "LambdaExecutionRole": "cinemacriticLambdaRole16c0dbf0-dev"
+        "Arn": "arn:aws:lambda:us-east-2:767397740855:function:cinemacritic4168fac2-dev",
+        "Name": "cinemacritic4168fac2-dev",
+        "LambdaExecutionRole": "cinemacriticLambdaRolefa3c6312-dev"
       },
-      "lastPushDirHash": "6YATG0RKpxUTwFZOfz+p5rIEP4s="
-    }
-  },
-  "api": {
-    "restcall": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "opeanai",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ],
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-cinemacritic-dev-98358-deployment/amplify-cfn-templates/api/restcall-cloudformation-template.json",
-        "logicalId": "apirestcall"
-      },
-      "lastPushTimeStamp": "2024-05-10T03:04:59.103Z",
-      "output": {
-        "ApiName": "restcall",
-        "RootUrl": "https://s7bhl95xki.execute-api.us-east-2.amazonaws.com/dev",
-        "ApiId": "s7bhl95xki"
-      },
-      "lastPushDirHash": "C1kb/yUEfM2zguynNQ82PaJg3jE="
+      "lastPushDirHash": "dzl/OzSinoiqBJJvYPTxt1KWnfI="
     }
   }
 }

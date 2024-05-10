@@ -5,7 +5,7 @@ import Loading from './loading';
 import Main from './main';
 import './input.css';
 
-const API_URL = 'http://localhost:8000/chat';
+const API_URL = 'https://pxfyjv7jvi.execute-api.us-east-2.amazonaws.com/default/cinemacritic4168fac2-dev';
 
 const InputFunction = ({ onResponsesUpdate }) => {
     const [username, setUserName] = useState("");

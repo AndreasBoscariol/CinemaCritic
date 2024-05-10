@@ -1,3 +1,6 @@
+const serverless = require('serverless-http');
+const app = express();
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -9,9 +12,7 @@ require('dotenv').config();
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY || "any-default-local-build_env",
 });
-console.log(apiKey);
 
-const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -43,3 +44,5 @@ const PORT = 8000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports.handler = serverless(app);

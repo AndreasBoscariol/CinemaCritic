@@ -152,34 +152,13 @@
         }
       }
     },
-    "functionopeanai": {
+    "functioncinemacritic4168fac2": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-cinemacritic-dev-98358-deployment/amplify-cfn-templates/function/opeanai-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-cinemacritic-dev-77057-deployment/amplify-cfn-templates/function/cinemacritic4168fac2-cloudformation-template.json",
         "Parameters": {
-          "deploymentBucketName": "amplify-cinemacritic-dev-98358-deployment",
-          "s3Key": "amplify-builds/opeanai-794c49682b752f642b45-build.zip",
-          "env": "dev"
-        }
-      }
-    },
-    "apirestcall": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-cinemacritic-dev-98358-deployment/amplify-cfn-templates/api/restcall-cloudformation-template.json",
-        "Parameters": {
-          "functionopeanaiName": {
-            "Fn::GetAtt": [
-              "functionopeanai",
-              "Outputs.Name"
-            ]
-          },
-          "functionopeanaiArn": {
-            "Fn::GetAtt": [
-              "functionopeanai",
-              "Outputs.Arn"
-            ]
-          },
+          "deploymentBucketName": "amplify-cinemacritic-dev-77057-deployment",
+          "s3Key": "amplify-builds/cinemacritic4168fac2-786b34412b6956516f67-build.zip",
           "env": "dev"
         }
       }
