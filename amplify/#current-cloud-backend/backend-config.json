@@ -1,0 +1,43 @@
+{
+  "api": {
+    "restcall": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "opeanai"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "opeanai": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_opeanai_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "opeanai"
+        }
+      ]
+    },
+    "AMPLIFY_function_opeanai_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "opeanai"
+        }
+      ]
+    }
+  }
+}
