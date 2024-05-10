@@ -23,7 +23,7 @@ const InputFunction = ({ onResponsesUpdate }) => {
                 try {
                     if (item.review !== "No review") {
                         const response = await axios.post(API_URL, {
-                            prompt: `${item.title} ${item.rating} ${item.review} You are a harsh movie critic. Write a sarcastic and mean quip making fun of the user about what they wrote. Make sure to provide the name of the movie you are making fun of to ensure proper context. Keep responses only up to 4 sentences.`
+                            prompt: `${item.title} ${item.review} You are a harsh movie critic. Write a sarcastic and mean quip making fun of the user about what they wrote. Make sure to provide the name of the movie you are making fun of to ensure proper context. Keep responses only up to 4 sentences.`
                         });
                         description = response.data;
                     }

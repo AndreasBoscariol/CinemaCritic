@@ -7,8 +7,9 @@ require('dotenv').config();
 
 // Initialize OpenAI client with the API Key
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY || "any-default-local-build_env",
 });
+console.log(apiKey);
 
 const app = express();
 

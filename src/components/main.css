@@ -1,3 +1,4 @@
+
 h1 {
     color: rgb(246, 255, 255);
     font-family: palatino, sans-serif;
@@ -30,7 +31,7 @@ h2 {
     margin-top: 1.5em;
     text-align: left; 
     color: rgb(246, 255, 255);
-    font-family: Sistina Platino, sans-serif;
+    font-family: "Courier New", Courier, monospace;
     font-size: 1em;
     z-index: 100;
 }
@@ -41,3 +42,10 @@ h2 {
   
 }
 
+.endText {
+    font-family: "Courier New", Courier, monospace;
+    top: 25%;
+    color: rgb(246, 255, 255);
+    font-size: 3.5em;
+    z-index: 999;
+}
