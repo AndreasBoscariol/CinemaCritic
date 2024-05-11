@@ -71,7 +71,8 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
         <div>
             <div>
                 {currentResponse && currentResponse.review !== "No review" && continueTyping && (
-                    <Typewriter className="typewriter-container"
+                    <div className="typewriter-container">
+                    <Typewriter 
                         key={typewriterKey}
                         onInit={(typewriter) => {
                             typewriter.typeString(currentResponse.description)
@@ -83,6 +84,7 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
                             loop: false,
                         }}
                     />
+                    </div>
                 )}
 
                 {showButton && (
