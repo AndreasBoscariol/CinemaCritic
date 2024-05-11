@@ -22,7 +22,7 @@ app.use(bodyParser.json()); // Parse JSON bodies
 
 // Initialize OpenAI client
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
+    apiKey: process.env.OPENAI_API_KEY || "any-default-local-build_env",
 });
 
 // Route to handle POST requests
