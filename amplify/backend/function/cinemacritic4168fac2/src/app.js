@@ -31,12 +31,12 @@ app.use(bodyParser.json()); // Parse JSON bodies
 
 // Initialize OpenAI client
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY || "any-default-local-build_env",
+    apiKey: "sk-proj-suS8UmYFKr6PmO89k3TpT3BlbkFJXcOE8kJq35O72FAS9htD"
 });
 
 // Route to handle POST requests
-app.post("/chat", async (req, res) => {
-    const { prompt } = req.body;
+app.post('/default/cinemacritic4168fac2-dev', async (req, res) => {
+  const { prompt } = req.body;
 
     try {
         const completion = await openai.chat.completions.create({
