@@ -9,13 +9,22 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-    origin: 'https://main.d1hunwk991mkfg.amplifyapp.com', // Specify the origin of the requests to accept
-    methods: ['GET', 'POST', 'OPTIONS'], // Allowed methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed custom headers
-    credentials: true, // Enable credentials
-    preflightContinue: false,
-    optionsSuccessStatus: 204
+  origin: 'https://main.d1hunwk991mkfg.amplifyapp.com',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'X-Requested-With',
+      'Accept',
+      'Origin',
+      'User-Agent',
+      'Access-Control-Allow-Headers'
+  ],
+  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
+
 
 app.use(cors(corsOptions)); // Apply CORS middleware to handle CORS preflight requests
 app.use(bodyParser.json()); // Parse JSON bodies
