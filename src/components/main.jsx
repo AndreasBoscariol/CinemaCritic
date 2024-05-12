@@ -4,10 +4,9 @@ import './main.css';
 
 const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFullScreen }) => {
     const [showButton, setShowButton] = useState(false);
+    const [typewriterKey, setTypewriterKey] = useState(0);
     const [continueTyping, setContinueTyping] = useState(true);
     const [endText, setEndText] = useState('');
-    const [displayedResponses, setDisplayedResponses] = useState([]); 
-    const [currentTyping, setCurrentTyping] = useState(''); 
 
     const calculateStats = useCallback(() => {
         const lastMonth = new Date();
@@ -31,7 +30,7 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
 
         const averageRating = countRatings > 0 ? (sumRatings / countRatings).toFixed(1) : "No ratings";
         const statsText = `In the last month, you watched ${countReviews} movies, posted ${countReviews} reviews, and the average rating was ${averageRating}.`;
-        setEndText('Overall, your taste is pretty... meh. Here are some stats: \n' + statsText);
+        setEndText('Overall, your taste is pretty... meh. Here are some stats: \n'+statsText);
     }, [responses]);
 
     const endScreen = useCallback(() => {
@@ -60,44 +59,22 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
         let nextIndex = (currentResponseIndex + 1) % responses.length;
         while (responses[nextIndex].review === "No review" && nextIndex !== currentResponseIndex) {
             nextIndex = (nextIndex + 1) % responses.length;
-        }    
-        setDisplayedResponses([...displayedResponses, currentTyping + '\n\n']);
-        setCurrentTyping(responses[nextIndex].description);
-
+        }
         setCurrentResponseIndex(nextIndex);
         setShowButton(false);
+        setTypewriterKey(prevKey => prevKey + 1);
     };
 
     const currentResponse = responses && responses[currentResponseIndex];
 
-    useEffect(() => {
-        if (currentResponse && currentResponse.review !== "No review") {
-            setCurrentTyping(currentResponse.description);
-        }
-    }, [currentResponse]);
-
     return (
         <div>
             <div className="typewriter-container">
-                {displayedResponses.map((response, index) => (
-                    <div key={index} className="response static-response">
-                        {response.split('\n').map((line, index) => (
-                            <React.Fragment key={index}>
-                                {line}
-                                <br />
-                            </React.Fragment>
-                        ))}
-                    </div>
-                ))}
-
-                {currentTyping && continueTyping && (
+                {currentResponse && currentResponse.review !== "No review" && continueTyping && (
                     <Typewriter
-                        key={currentResponseIndex}
+                        key={typewriterKey}
                         onInit={(typewriter) => {
-                            typewriter.typeString(currentTyping)
-                                .callFunction(() => {
-                                    setShowButton(true); 
-                                })
+                            typewriter.typeString(currentResponse.description)
                                 .start();
                         }}
                         options={{
@@ -116,7 +93,7 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
             {!continueTyping && (
                 <div className='endText'>
                     <Typewriter
-                        key={currentResponseIndex + 1}
+                        key={typewriterKey}
                         onInit={(typewriter) => {
                             typewriter.typeString(endText)
                                 .start();
