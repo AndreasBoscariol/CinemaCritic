@@ -62,7 +62,7 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
             nextIndex = (nextIndex + 1) % responses.length;
         }    
         setDisplayedResponses([...displayedResponses, currentTyping + '\n\n']);
-        setCurrentTyping(responses[nextIndex].description);
+        setCurrentTyping(JSON.parse(responses[nextIndex].description));
 
         setCurrentResponseIndex(nextIndex);
         setShowButton(false);
@@ -94,9 +94,7 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
                     <Typewriter
                         key={currentResponseIndex}
                         onInit={(typewriter) => {
-                            // Ensure the currentTyping is always a string
-                            const textToType = typeof currentTyping === 'string' ? currentTyping : String(currentTyping);
-                            typewriter.typeString(textToType)
+                            typewriter.typeString(currentTyping)
                                 .callFunction(() => {
                                     setShowButton(true); 
                                 })
