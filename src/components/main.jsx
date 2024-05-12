@@ -8,6 +8,14 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
     const [endText, setEndText] = useState('');
     const [displayedResponses, setDisplayedResponses] = useState([]); 
     const [currentTyping, setCurrentTyping] = useState(''); 
+    const [isInitialLoad, setIsInitialLoad] = useState(true);  // State to track initial load
+
+    useEffect(() => {
+        if (responses.length > 0) {
+            setIsInitialLoad(false);  // Set to false once responses are confirmed to be loaded
+        }
+    }, [responses]);
+
 
     const calculateStats = useCallback(() => {
         const lastMonth = new Date();
@@ -78,40 +86,42 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
 
     return (
         <div>
-            <div className="typewriter-container">
-                {displayedResponses.map((response, index) => (
-                    <div key={index} className="response static-response">
-                        {response.split('\n').map((line, index) => (
-                            <React.Fragment key={index}>
-                                {line}
-                                <br />
-                            </React.Fragment>
-                        ))}
-                    </div>
-                ))}
+            {!isInitialLoad && (
+                <div className="typewriter-container">
+                    {displayedResponses.map((response, index) => (
+                        <div key={index} className="response static-response">
+                            {response.split('\n').map((line, index) => (
+                                <React.Fragment key={index}>
+                                    {line}
+                                    <br />
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    ))}
 
-                {currentTyping && continueTyping && (
-                    <Typewriter
-                        key={currentResponseIndex}
-                        onInit={(typewriter) => {
-                            typewriter.typeString(currentTyping)
-                                .callFunction(() => {
-                                    setShowButton(true); 
-                                })
-                                .start();
-                        }}
-                        options={{
-                            delay: 40,
-                            autoStart: true,
-                            loop: false,
-                        }}
-                    />
-                )}
+                    {currentTyping && continueTyping && (
+                        <Typewriter
+                            key={currentResponseIndex}
+                            onInit={(typewriter) => {
+                                typewriter.typeString(currentTyping)
+                                    .callFunction(() => {
+                                        setShowButton(true); 
+                                    })
+                                    .start();
+                            }}
+                            options={{
+                                delay: 40,
+                                autoStart: true,
+                                loop: false,
+                            }}
+                        />
+                    )}
 
-                {showButton && (
-                    <button id="conversation" onClick={handleNextResponse} className="next-button">Next Response</button>
-                )}
-            </div>
+                    {showButton && (
+                        <button id="conversation" onClick={handleNextResponse} className="next-button">Next Response</button>
+                    )}
+                </div>
+            )}
 
             {!continueTyping && (
                 <div className='endText'>
