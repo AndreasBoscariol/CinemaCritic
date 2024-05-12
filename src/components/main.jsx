@@ -62,7 +62,7 @@ const Main = ({ responses, currentResponseIndex, setCurrentResponseIndex, setFul
             nextIndex = (nextIndex + 1) % responses.length;
         }    
         setDisplayedResponses([...displayedResponses, currentTyping + '\n\n']);
-        setCurrentTyping(JSON.parse(responses[nextIndex].description).text);
+        setCurrentTyping(responses[nextIndex].description);
 
         setCurrentResponseIndex(nextIndex);
         setShowButton(false);

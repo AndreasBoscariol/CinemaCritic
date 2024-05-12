@@ -25,11 +25,11 @@ const InputFunction = ({ onResponsesUpdate }) => {
                 let description = "";
                 try {
                     if (item.review !== "No review") {
-                        await delay(50); // Delay of 50 milliseconds between requests
+                        await delay(10); // Delay of 10 milliseconds between requests
                         const response = await axios.post(API_URL, {
                             prompt: `${item.title} ${item.review} You are a harsh movie critic. Write a sarcastic and mean quip making fun of the user about what they wrote. Make sure to provide the name of the movie you are making fun of to ensure proper context. Keep responses only up to 4 sentences.`
                         });
-                        description = response.data;
+                        description = response.data.message;
                     }
                 } catch (error) {
                     console.error('Failed to send data to ChatGPT:', error);
