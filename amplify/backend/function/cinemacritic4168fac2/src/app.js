@@ -28,6 +28,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions)); // Apply CORS middleware to handle CORS preflight requests
 app.use(bodyParser.json()); // Parse JSON bodies
+app.options('*', cors(corsOptions)); 
 
 // Initialize OpenAI client
 const openai = new OpenAI({

@@ -16,12 +16,16 @@ const InputFunction = ({ onResponsesUpdate }) => {
     const [animateOut, setAnimateOut] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
+    const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
     const sendToChatGPT = useCallback(async (rssData) => {
         try {
-            const promises = rssData.map(async (item) => {
+            const responses = [];
+            for (const item of rssData) {
                 let description = "";
                 try {
                     if (item.review !== "No review") {
+                        await delay(1000); // Delay of 1000 milliseconds between requests
                         const response = await axios.post(API_URL, {
                             prompt: `${item.title} ${item.review} You are a harsh movie critic. Write a sarcastic and mean quip making fun of the user about what they wrote. Make sure to provide the name of the movie you are making fun of to ensure proper context. Keep responses only up to 4 sentences.`
                         });
@@ -31,19 +35,17 @@ const InputFunction = ({ onResponsesUpdate }) => {
                     console.error('Failed to send data to ChatGPT:', error);
                     description = 'Failed to process the data for this entry.';
                 }
-                return {
+                responses.push({
                     imgSrc: item.imgSrc,
                     title: item.title,
                     review: item.review,
                     rating: item.rating,
-                    watchedDate: item.watchedDate, 
-                    description: description,
-                };
-            });
-    
-            const updatedResponses = await Promise.all(promises);
-            setResponses(updatedResponses);
-            onResponsesUpdate(updatedResponses);
+                    watchedDate: item.watchedDate,
+                    description: description
+                });
+            }
+            setResponses(responses);
+            onResponsesUpdate(responses);
         } catch (error) {
             console.error('General error in sending data to ChatGPT:', error);
         }

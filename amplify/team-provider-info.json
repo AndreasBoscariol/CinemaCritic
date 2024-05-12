@@ -15,7 +15,7 @@
       "function": {
         "cinemacritic4168fac2": {
           "deploymentBucketName": "amplify-cinemacritic-dev-77057-deployment",
-          "s3Key": "amplify-builds/cinemacritic4168fac2-786b34412b6956516f67-build.zip"
+          "s3Key": "amplify-builds/cinemacritic4168fac2-303451446b4c796f5045-build.zip"
         }
       }
     }
