@@ -17,19 +17,19 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
-      "lastBuildTimeStamp": "2024-05-11T11:05:13.975Z",
+      "lastBuildTimeStamp": "2024-05-13T11:28:05.345Z",
       "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2024-05-11T11:05:15.670Z",
-      "distZipFilename": "cinemacritic4168fac2-303451446b4c796f5045-build.zip",
+      "lastPackageTimeStamp": "2024-05-13T11:28:06.779Z",
+      "distZipFilename": "cinemacritic4168fac2-366b6f4a714352503734-build.zip",
       "s3Bucket": {
         "deploymentBucketName": "amplify-cinemacritic-dev-77057-deployment",
-        "s3Key": "amplify-builds/cinemacritic4168fac2-303451446b4c796f5045-build.zip"
+        "s3Key": "amplify-builds/cinemacritic4168fac2-366b6f4a714352503734-build.zip"
       },
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-cinemacritic-dev-77057-deployment/amplify-cfn-templates/function/cinemacritic4168fac2-cloudformation-template.json",
         "logicalId": "functioncinemacritic4168fac2"
       },
-      "lastPushTimeStamp": "2024-05-11T11:06:18.986Z",
+      "lastPushTimeStamp": "2024-05-13T11:32:07.530Z",
       "output": {
         "LambdaExecutionRoleArn": "arn:aws:iam::767397740855:role/cinemacriticLambdaRolefa3c6312-dev",
         "Region": "us-east-2",
@@ -37,7 +37,33 @@
         "Name": "cinemacritic4168fac2-dev",
         "LambdaExecutionRole": "cinemacriticLambdaRolefa3c6312-dev"
       },
-      "lastPushDirHash": "4q4fDbjvyhuN3XhJ0tnckNvBck8="
+      "lastPushDirHash": "IA1j8KrAJ224quNEUNqughTKex4="
+    },
+    "letterboxdrss": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2024-05-13T11:31:03.812Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2024-05-13T11:31:04.389Z",
+      "distZipFilename": "letterboxdrss-797631306b50702f7132-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-cinemacritic-dev-77057-deployment",
+        "s3Key": "amplify-builds/letterboxdrss-797631306b50702f7132-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-cinemacritic-dev-77057-deployment/amplify-cfn-templates/function/letterboxdrss-cloudformation-template.json",
+        "logicalId": "functionletterboxdrss"
+      },
+      "lastPushTimeStamp": "2024-05-13T11:32:07.706Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::767397740855:role/cinemacriticLambdaRole59a46593-dev",
+        "Region": "us-east-2",
+        "Arn": "arn:aws:lambda:us-east-2:767397740855:function:letterboxdrss-dev",
+        "Name": "letterboxdrss-dev",
+        "LambdaExecutionRole": "cinemacriticLambdaRole59a46593-dev"
+      },
+      "lastPushDirHash": "K1idl33at2Y4qwJ9ANtVZYX/WnA="
     }
   }
 }

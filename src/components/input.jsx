@@ -6,6 +6,7 @@ import Main from './main';
 import './input.css';
 
 const API_URL = 'https://pxfyjv7jvi.execute-api.us-east-2.amazonaws.com/default/cinemacritic4168fac2-dev';
+const RSS_URL = 'https://8rurhv0an8.execute-api.us-east-2.amazonaws.com/default/letterboxdrss-dev';
 
 const InputFunction = ({ onResponsesUpdate }) => {
     const [username, setUserName] = useState("");
@@ -56,7 +57,11 @@ const InputFunction = ({ onResponsesUpdate }) => {
         if (!username) return;
 
         try {
-            const result = await readRSS(username);
+            
+            const response = await axios.post(RSS_URL, {
+                'username': username,
+            });
+            const result=response.data;
             if (result.length > 0) {
                 setErrorMessage("");
                 handleFadeOut();

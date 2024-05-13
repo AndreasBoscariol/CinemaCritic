@@ -4,6 +4,11 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "letterboxdrss": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -20,6 +25,22 @@
         {
           "category": "function",
           "resourceName": "cinemacritic4168fac2"
+        }
+      ]
+    },
+    "AMPLIFY_function_letterboxdrss_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "letterboxdrss"
+        }
+      ]
+    },
+    "AMPLIFY_function_letterboxdrss_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "letterboxdrss"
         }
       ]
     }

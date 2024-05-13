@@ -158,7 +158,18 @@
         "TemplateURL": "https://s3.amazonaws.com/amplify-cinemacritic-dev-77057-deployment/amplify-cfn-templates/function/cinemacritic4168fac2-cloudformation-template.json",
         "Parameters": {
           "deploymentBucketName": "amplify-cinemacritic-dev-77057-deployment",
-          "s3Key": "amplify-builds/cinemacritic4168fac2-303451446b4c796f5045-build.zip",
+          "s3Key": "amplify-builds/cinemacritic4168fac2-366b6f4a714352503734-build.zip",
+          "env": "dev"
+        }
+      }
+    },
+    "functionletterboxdrss": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-cinemacritic-dev-77057-deployment/amplify-cfn-templates/function/letterboxdrss-cloudformation-template.json",
+        "Parameters": {
+          "deploymentBucketName": "amplify-cinemacritic-dev-77057-deployment",
+          "s3Key": "amplify-builds/letterboxdrss-797631306b50702f7132-build.zip",
           "env": "dev"
         }
       }

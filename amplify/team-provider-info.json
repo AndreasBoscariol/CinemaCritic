@@ -15,7 +15,11 @@
       "function": {
         "cinemacritic4168fac2": {
           "deploymentBucketName": "amplify-cinemacritic-dev-77057-deployment",
-          "s3Key": "amplify-builds/cinemacritic4168fac2-303451446b4c796f5045-build.zip"
+          "s3Key": "amplify-builds/cinemacritic4168fac2-366b6f4a714352503734-build.zip"
+        },
+        "letterboxdrss": {
+          "deploymentBucketName": "amplify-cinemacritic-dev-77057-deployment",
+          "s3Key": "amplify-builds/letterboxdrss-797631306b50702f7132-build.zip"
         }
       }
     }
