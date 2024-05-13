@@ -32,7 +32,7 @@ app.options('*', cors(corsOptions));
 
 // Initialize OpenAI client
 const openai = new OpenAI({
-    apiKey: "sk-proj-suS8UmYFKr6PmO89k3TpT3BlbkFJXcOE8kJq35O72FAS9htD"
+    apiKey: ""
 });
 
 // Route to handle POST requests
